@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+
+<a href="/profile">Посмотреть свой профиль</a><br>
+
+<h1>Добавить юзера</h1>
+<form th:action="@{/users}" method="post" th:object="${user}">
+    <input type="text" th:field="*{name}" placeholder="Имя" required />
+    <input type="text" th:field="*{username}" placeholder="Логин" required />
+    <input type="password" th:field="*{password}" placeholder="Пароль" required />
+    <select th:field="*{roles}">
+        <option th:each="role : ${roles}" th:id="${role}" th:name="${'roles'}" th:text="${role}" th:value="${role}">
+    </select>
+    <button type="submit">Добавить</button>
+</form>
+
+
+<h1>Юзеры</h1>
+<ul style="display: flex; flex-wrap: wrap; justify-content: start; gap: 20px">
+    <li th:each="us : ${users}">
+        <span>ID: </span>
+        <span th:text="${us.getId()}"></span><br>
+        <span>Имя: </span>
+        <span th:text="${us.getName()}"></span><br>
+        <span>Логин: </span>
+        <span th:text="${us.getUsername()}"></span><br>
+        <span>Пароль: </span>
+        <span th:text="${us.getPassword()}"></span><br>
+        <span>Роли:</span>
+        <ul>
+            <li th:each="role: ${us.getRoles()}">
+                <span th:text="${role.getAuthority()}"></span>
+            </li>
+        </ul>
+        <a th:href="@{/users/edit/{id}(id=${us.getId()})}">Редактировать</a><br>
+        <a th:href="@{/users/delete/{id}(id=${us.getId()})}" onclick="return confirm('Вы уверены, что хотите удалить?');">Удалить</a>
+    </li>
+</ul>
+</body>
+</html>

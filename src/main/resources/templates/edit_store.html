@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit store</title>
+</head>
+<body>
+<h1>Добавить магазин</h1>
+<form th:action="@{/stores/update}" method="post" th:object="${store}">
+    <input type="hidden" th:field="*{id}"/>
+    <input type="text" th:field="*{address}" placeholder="Адрес" required />
+    <button type="submit">Создать</button>
+</form>
+</body>
+</html>

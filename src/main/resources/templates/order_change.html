@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change order</title>
+</head>
+<body>
+    <form th:action="@{/orders/update}" method="post" th:object="${order}">
+        <input type="hidden" th:field="*{id}"/>
+        <label for="books">Книга:</label>
+        <select th:field="*{books}" id="books">
+            <option th:each="book: ${books}" th:value="${book.getId()}" th:text="${book.getDataForOrder()}"></option>
+        </select>
+        <button type="submit">Изменить</button>
+    </form>
+</body>
+</html>

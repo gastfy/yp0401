@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update author</title>
+</head>
+<body>
+<form th:action="@{/authors/update}" method="post" th:object="${author}">
+    <input type="hidden" th:field="*{id}"/>
+    <input type="text" th:field="*{firstName}" placeholder="Имя" required />
+    <input type="text" th:field="*{lastName}" placeholder="Фамилия" required />
+    <button type="submit">Изменить</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Книжки</title>
+</head>
+<body>
+<h1>Ссылки</h1>
+<div style="display: flex; gap: 10px">
+    <a href="/books">Книги</a>
+    <a href="/authors">Авторы</a>
+    <a href="/genres">Жанры</a>
+    <a href="/stores">Магазины</a>
+    <a href="/types">Типы</a>
+    <a href="/orderTypes">Типы заказов</a>
+    <a href="/ordersList">Заказы</a>
+    <a href="/profile">Посмотреть свой профиль</a>
+</div>
+
+
+<h1>Добавить книгу</h1>
+<form th:action="@{/books}" method="post" th:object="${book1}">
+    <input type="text" th:field="*{name}" placeholder="Имя"/>
+    <select th:field="*{author}" id="author">
+        <option th:each="aut: ${authors}" th:value="${aut.getId()}" th:text="${aut.getTotalName()}"></option>
+    </select>
+    <select th:field="*{genre}" id="genre">
+        <option th:each="gen: ${genres}" th:value="${gen.getId()}" th:text="${gen.getName()}"></option>
+    </select>
+    <select th:field="*{type}" id="type">
+        <option th:each="type: ${types}" th:value="${type.getId()}" th:text="${type.getName()}"></option>
+    </select>
+    <select th:field="*{store}" id="store">
+        <option th:each="str: ${stores}" th:value="${str.getId()}" th:text="${str.getAddress()}"></option>
+    </select>
+    <button type="submit">Добавить</button>
+</form>
+
+
+<h1>Книги</h1>
+<ul style="display: flex; flex-wrap: wrap; justify-content: start; gap: 20px">
+    <li th:each="book : ${books}">
+        <span>ID: </span>
+        <span th:text="${book.getId()}"></span><br>
+        <span>Название: </span>
+        <span th:text="${book.getName()}"></span><br>
+        <span>Автор: </span>
+        <span th:text="${book.getAuthor().getTotalName()}"></span><br>
+        <span>Жанр: </span>
+        <span th:text="${book.getGenre().getName()}"></span><br>
+        <span>Тип: </span>
+        <span th:text="${book.getType().getName()}"></span><br>
+        <span>Магазин: </span>
+        <span th:text="${book.getStore().getAddress()}"></span><br>
+        <a th:href="@{/books/edit/{id}(id=${book.getId()})}">Редактировать</a><br>
+        <a th:href="@{/books/delete/{id}(id=${book.getId()})}" onclick="return confirm('Вы уверены, что хотите удалить?');">Удалить</a>
+    </li>
+</ul>
+</body>
+</html>

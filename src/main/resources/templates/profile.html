@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+    <pre th:text="${user.getData()}"></pre>
+    <br>
+    <a href="/profile/change">Изменить данные</a>
+    <a href="/profile/delete" onclick="return confirm('Вы уверены, что хотите удалить?');">Удалить профиль</a>
+</body>
+</html>

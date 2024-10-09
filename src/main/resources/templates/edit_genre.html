@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update genre</title>
+</head>
+<body>
+<form th:action="@{/genres/update}" method="post" th:object="${genre}">
+    <input type="hidden" th:field="*{id}"/>
+    <input type="text" th:field="*{name}" placeholder="Имя" required />
+    <button type="submit">Создать</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update book</title>
+</head>
+<body>
+<h1>Изменить книгу</h1>
+<form th:action="@{/books/update}" method="post" th:object="${book}">
+    <input type="hidden" th:field="*{id}"/>
+    <input type="text" th:field="*{name}" placeholder="Имя"/>
+    <select th:field="*{author}" id="author">
+        <option th:each="aut: ${authors}" th:value="${aut.getId()}" th:text="${aut.getTotalName()}"></option>
+    </select>
+    <select th:field="*{genre}" id="genre">
+        <option th:each="gen: ${genres}" th:value="${gen.getId()}" th:text="${gen.getName()}"></option>
+    </select>
+    <select th:field="*{type}" id="type">
+        <option th:each="type: ${types}" th:value="${type.getId()}" th:text="${type.getName()}"></option>
+    </select>
+    <select th:field="*{store}" id="store">
+        <option th:each="str: ${stores}" th:value="${str.getId()}" th:text="${str.getAddress()}"></option>
+    </select>
+    <button type="submit">Добавить</button>
+</form>
+</body>
+</html>

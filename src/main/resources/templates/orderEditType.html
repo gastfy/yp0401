@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit type</title>
+</head>
+<body>
+    <form th:action="@{/ordersList/update}" method="post" th:object="${order}">
+        <input type="hidden" th:field="*{id}"/>
+        <label for="books">Тип:</label>
+        <select th:field="*{type}" id="books">
+            <option th:each="typ: ${types}" th:value="${typ.getId()}" th:text="${typ.getType()}"></option>
+        </select>
+        <button type="submit">Изменить</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit type</title>
+</head>
+<body>
+<form th:action="@{/types/update}" method="post" th:object="${type}">
+    <input type="hidden" th:field="*{id}"/>
+    <input type="text" th:field="*{name}" placeholder="Название" required />
+    <button type="submit">Создать</button>
+</form>
+</body>
+</html>

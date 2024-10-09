@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders list</title>
+</head>
+<body>
+<h1>Ссылки</h1>
+<div style="display: flex; gap: 10px">
+    <a href="/books">Книги</a>
+    <a href="/authors">Авторы</a>
+    <a href="/genres">Жанры</a>
+    <a href="/stores">Магазины</a>
+    <a href="/types">Типы</a>
+    <a href="/orderTypes">Типы заказов</a>
+    <a href="/ordersList">Заказы</a>
+    <a href="/profile">Посмотреть свой профиль</a>
+</div>
+<h1>Заказы</h1>
+<ul style="display: flex; flex-wrap: wrap; justify-content: start; gap: 20px">
+    <li th:each="ord : ${orders}">
+        <span>ID: </span>
+        <span th:text="${ord.getId()}"></span><br>
+        <span>Тип: </span>
+        <span th:text="${ord.getType().getType()}"></span>
+        <br><span>Книги:</span>
+        <ul>
+            <li th:each="book: ${ord.getBooks()}">
+                <span th:text="${book.getName()}"></span>
+                <span>- Тип: </span>
+                <span th:text="${book.getType().getName()}"></span>
+            </li>
+        </ul>
+        <a th:href="@{/ordersList/edit/{id}(id=${ord.getId()})}">Редактировать</a>
+    </li>
+</ul>
+</body>
+</html>

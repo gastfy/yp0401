@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change profile</title>
+</head>
+<body>
+    <form th:action="@{/profile/change}" method="post" th:object="${user}">
+        <input type="hidden" th:field="*{id}"/>
+        <input type="text" th:field="*{name}" placeholder="Имя" required />
+        <input type="text" th:field="*{username}" placeholder="Логин" required />
+        <input type="password" th:field="*{password}" placeholder="Пароль" required />
+        <button type="submit">Изменить</button>
+    </form>
+</body>
+</html>

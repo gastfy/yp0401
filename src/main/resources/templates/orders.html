@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User home page</title>
+</head>
+<body>
+
+<a href="/profile">Посмотреть свой профиль</a>
+
+<h1>Добавить заказ</h1>
+<form th:action="@{/orders}" method="post" th:object="${order}">
+    <label for="books">Книга:</label>
+    <select th:field="*{books}" id="books">
+        <option th:each="book: ${books}" th:value="${book.getId()}" th:text="${book.getDataForOrder()}"></option>
+    </select>
+    <button type="submit">Добавить</button>
+</form>
+
+
+<h1>Заказы</h1>
+<ul style="display: flex; flex-wrap: wrap; justify-content: start; gap: 20px">
+    <li th:each="ord : ${orders}">
+        <span>ID: </span>
+        <span th:text="${ord.getId()}"></span><br>
+        <span>Тип: </span>
+        <span th:text="${ord.getType().getType()}"></span>
+        <br><span>Книги:</span>
+        <ul>
+            <li th:each="book: ${ord.getBooks()}">
+                <span th:text="${book.getName()}"></span>
+                <span>- Тип: </span>
+                <span th:text="${book.getType().getName()}"></span>
+            </li>
+        </ul>
+        <a th:href="@{/orders/edit/{id}(id=${ord.getId()})}">Редактировать</a>
+        <a th:href="@{/orders/delete/{id}(id=${ord.getId()})}" onclick="return confirm('Вы уверены, что хотите удалить?');">Удалить</a>
+    </li>
+</ul>
+</body>
+</html>
